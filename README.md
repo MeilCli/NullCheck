@@ -1,7 +1,7 @@
 # NullCheck
 This repository is research for C#'s null check benchmark
 
-## Research Code
+## Benchmark Code
 ```csharp
 [SimpleJob]
 [MeanColumn, MinColumn, MaxColumn]
