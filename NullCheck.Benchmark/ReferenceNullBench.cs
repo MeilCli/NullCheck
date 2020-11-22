@@ -65,7 +65,6 @@ namespace NullCheck.Benchmark
             return result;
         }
 
-
         [Benchmark]
         public bool PatternMatchNotNull9()
         {
