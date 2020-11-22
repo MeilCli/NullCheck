@@ -95,7 +95,7 @@ Intel Core i9-10900K CPU 3.70GHz, 1 CPU, 16 logical and 8 physical cores
 
 ```
 
-Å¶Execute on Hyper-v
+Execute on Hyper-v
 
 ### ReferenceNullBench
 |                           Method | Value |      Mean |     Error |    StdDev |       Min |       Max | Ratio | RatioSD | Gen 0 | Gen 1 | Gen 2 | Allocated |
