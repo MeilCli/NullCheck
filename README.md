@@ -46,6 +46,7 @@ Measure 4 benchmark case
 |PatternMatchNotNull9|`!(Value is not null)`|
 |ObjectEquals|`object.Equals(Value, null)`|
 |ObjectReferenceEquals|`object.ReferenceEquals(Value, null)`|
+|EqualityComparer|`EqualityComparer<string?>.Default.Equals(Value, null)`|
 
 #### ReferenceNotNullBench
 |Method name|expression|
@@ -58,6 +59,7 @@ Measure 4 benchmark case
 |PatternMatchNotNull9|`Value is not null`|
 |ObjectEquals|`!(object.Equals(Value, null))`|
 |ObjectReferenceEquals|`!(object.ReferenceEquals(Value, null))`|
+|EqualityComparer|`!(EqualityComparer<string?>.Default.Equals(Value, null))`|
 
 #### ValueNullBench
 |Method name|expression|
@@ -70,6 +72,7 @@ Measure 4 benchmark case
 |PatternMatchNotNull8|`!(Value is { })`|
 |PatternMatchNotNull9|`!(Value is not null)`|
 |ObjectEquals|`object.Equals(Value, null)`|
+|EqualityComparer|`EqualityComparer<int?>.Default.Equals(Value, null)`|
 
 #### ValueNotNullBench
 |Method name|expression|
@@ -82,6 +85,7 @@ Measure 4 benchmark case
 |PatternMatchNotNull8|`Value is { }`|
 |PatternMatchNotNull9|`Value is not null`|
 |ObjectEquals|`!(object.Equals(Value, null))`|
+|EqualityComparer|`!(EqualityComparer<int?>.Default.Equals(Value, null))`|
 
 ## Result
 ``` ini
@@ -100,86 +104,121 @@ Execute on Hyper-v
 ### ReferenceNullBench
 |                           Method | Value |      Mean |     Error |    StdDev |       Min |       Max | Ratio | RatioSD | Gen 0 | Gen 1 | Gen 2 | Allocated |
 |--------------------------------- |------ |----------:|----------:|----------:|----------:|----------:|------:|--------:|------:|------:|------:|----------:|
-|                    **EqualOperator** |     **?** |  **2.775 ns** | **0.0143 ns** | **0.0127 ns** |  **2.761 ns** |  **2.800 ns** |  **1.00** |    **0.00** |     **-** |     **-** |     **-** |         **-** |
-|                PartternMatchNull |     ? |  2.676 ns | 0.0089 ns | 0.0079 ns |  2.657 ns |  2.690 ns |  0.96 |    0.01 |     - |     - |     - |         - |
-|             PatternMatchNotNull7 |     ? |  2.702 ns | 0.0081 ns | 0.0076 ns |  2.692 ns |  2.714 ns |  0.97 |    0.01 |     - |     - |     - |         - |
-| PatternMatchNotNull7WithVariable |     ? |  2.708 ns | 0.0107 ns | 0.0100 ns |  2.696 ns |  2.726 ns |  0.98 |    0.01 |     - |     - |     - |         - |
-|             PatternMatchNotNull8 |     ? |  2.702 ns | 0.0080 ns | 0.0075 ns |  2.690 ns |  2.712 ns |  0.97 |    0.00 |     - |     - |     - |         - |
-|             PatternMatchNotNull9 |     ? |  2.639 ns | 0.0131 ns | 0.0123 ns |  2.617 ns |  2.659 ns |  0.95 |    0.01 |     - |     - |     - |         - |
-|                     ObjectEquals |     ? | 11.519 ns | 0.0200 ns | 0.0177 ns | 11.484 ns | 11.548 ns |  4.15 |    0.02 |     - |     - |     - |         - |
-|            ObjectReferenceEquals |     ? |  2.766 ns | 0.0114 ns | 0.0106 ns |  2.749 ns |  2.785 ns |  1.00 |    0.01 |     - |     - |     - |         - |
+|                    **EqualOperator** |     **?** |  **2.795 ns** | **0.0082 ns** | **0.0077 ns** |  **2.783 ns** |  **2.810 ns** |  **1.00** |    **0.00** |     **-** |     **-** |     **-** |         **-** |
+|                PartternMatchNull |     ? |  2.737 ns | 0.0067 ns | 0.0056 ns |  2.728 ns |  2.750 ns |  0.98 |    0.00 |     - |     - |     - |         - |
+|             PatternMatchNotNull7 |     ? |  2.727 ns | 0.0116 ns | 0.0103 ns |  2.714 ns |  2.746 ns |  0.98 |    0.01 |     - |     - |     - |         - |
+| PatternMatchNotNull7WithVariable |     ? |  2.589 ns | 0.0046 ns | 0.0039 ns |  2.583 ns |  2.595 ns |  0.93 |    0.00 |     - |     - |     - |         - |
+|             PatternMatchNotNull8 |     ? |  2.740 ns | 0.0093 ns | 0.0087 ns |  2.724 ns |  2.751 ns |  0.98 |    0.00 |     - |     - |     - |         - |
+|             PatternMatchNotNull9 |     ? |  2.800 ns | 0.0086 ns | 0.0081 ns |  2.786 ns |  2.814 ns |  1.00 |    0.00 |     - |     - |     - |         - |
+|                     ObjectEquals |     ? | 15.217 ns | 0.0315 ns | 0.0294 ns | 15.158 ns | 15.265 ns |  5.44 |    0.02 |     - |     - |     - |         - |
+|            ObjectReferenceEquals |     ? |  2.795 ns | 0.0189 ns | 0.0177 ns |  2.776 ns |  2.835 ns |  1.00 |    0.01 |     - |     - |     - |         - |
+|                 EqualityComparer |     ? | 15.155 ns | 0.0515 ns | 0.0482 ns | 15.062 ns | 15.239 ns |  5.42 |    0.02 |     - |     - |     - |         - |
 |                                  |       |           |           |           |           |           |       |         |       |       |       |           |
-|                    **EqualOperator** |      **** |  **2.761 ns** | **0.0087 ns** | **0.0081 ns** |  **2.751 ns** |  **2.775 ns** |  **1.00** |    **0.00** |     **-** |     **-** |     **-** |         **-** |
-|                PartternMatchNull |       |  2.713 ns | 0.0138 ns | 0.0115 ns |  2.694 ns |  2.731 ns |  0.98 |    0.01 |     - |     - |     - |         - |
-|             PatternMatchNotNull7 |       |  2.673 ns | 0.0104 ns | 0.0087 ns |  2.658 ns |  2.693 ns |  0.97 |    0.00 |     - |     - |     - |         - |
-| PatternMatchNotNull7WithVariable |       |  2.707 ns | 0.0076 ns | 0.0067 ns |  2.696 ns |  2.718 ns |  0.98 |    0.00 |     - |     - |     - |         - |
-|             PatternMatchNotNull8 |       |  2.700 ns | 0.0097 ns | 0.0086 ns |  2.689 ns |  2.713 ns |  0.98 |    0.00 |     - |     - |     - |         - |
-|             PatternMatchNotNull9 |       |  2.768 ns | 0.0060 ns | 0.0050 ns |  2.758 ns |  2.779 ns |  1.00 |    0.00 |     - |     - |     - |         - |
-|                     ObjectEquals |       | 14.963 ns | 0.0454 ns | 0.0424 ns | 14.902 ns | 15.032 ns |  5.42 |    0.02 |     - |     - |     - |         - |
-|            ObjectReferenceEquals |       |  2.771 ns | 0.0140 ns | 0.0117 ns |  2.756 ns |  2.795 ns |  1.00 |    0.00 |     - |     - |     - |         - |
+|                    **EqualOperator** |      **** |  **2.800 ns** | **0.0137 ns** | **0.0128 ns** |  **2.781 ns** |  **2.822 ns** |  **1.00** |    **0.00** |     **-** |     **-** |     **-** |         **-** |
+|                PartternMatchNull |       |  2.694 ns | 0.0165 ns | 0.0154 ns |  2.671 ns |  2.725 ns |  0.96 |    0.01 |     - |     - |     - |         - |
+|             PatternMatchNotNull7 |       |  2.739 ns | 0.0144 ns | 0.0135 ns |  2.716 ns |  2.761 ns |  0.98 |    0.01 |     - |     - |     - |         - |
+| PatternMatchNotNull7WithVariable |       |  2.732 ns | 0.0133 ns | 0.0125 ns |  2.717 ns |  2.751 ns |  0.98 |    0.01 |     - |     - |     - |         - |
+|             PatternMatchNotNull8 |       |  2.703 ns | 0.0172 ns | 0.0161 ns |  2.680 ns |  2.735 ns |  0.97 |    0.01 |     - |     - |     - |         - |
+|             PatternMatchNotNull9 |       |  2.675 ns | 0.0251 ns | 0.0235 ns |  2.645 ns |  2.722 ns |  0.96 |    0.01 |     - |     - |     - |         - |
+|                     ObjectEquals |       | 16.751 ns | 0.0549 ns | 0.0486 ns | 16.654 ns | 16.823 ns |  5.98 |    0.03 |     - |     - |     - |         - |
+|            ObjectReferenceEquals |       |  2.805 ns | 0.0154 ns | 0.0144 ns |  2.782 ns |  2.827 ns |  1.00 |    0.01 |     - |     - |     - |         - |
+|                 EqualityComparer |       | 18.654 ns | 0.0813 ns | 0.0761 ns | 18.573 ns | 18.852 ns |  6.66 |    0.04 |     - |     - |     - |         - |
 
 ### ReferenceNotNullBench
 |                           Method | Value |      Mean |     Error |    StdDev |       Min |       Max | Ratio | RatioSD | Gen 0 | Gen 1 | Gen 2 | Allocated |
 |--------------------------------- |------ |----------:|----------:|----------:|----------:|----------:|------:|--------:|------:|------:|------:|----------:|
-|                    **EqualOperator** |     **?** |  **2.772 ns** | **0.0080 ns** | **0.0071 ns** |  **2.757 ns** |  **2.781 ns** |  **1.00** |    **0.00** |     **-** |     **-** |     **-** |         **-** |
-|                PartternMatchNull |     ? |  2.711 ns | 0.0090 ns | 0.0085 ns |  2.698 ns |  2.728 ns |  0.98 |    0.00 |     - |     - |     - |         - |
-|             PatternMatchNotNull7 |     ? |  2.680 ns | 0.0125 ns | 0.0117 ns |  2.664 ns |  2.704 ns |  0.97 |    0.00 |     - |     - |     - |         - |
-| PatternMatchNotNull7WithVariable |     ? |  2.710 ns | 0.0084 ns | 0.0070 ns |  2.698 ns |  2.720 ns |  0.98 |    0.00 |     - |     - |     - |         - |
-|             PatternMatchNotNull8 |     ? |  2.675 ns | 0.0076 ns | 0.0071 ns |  2.665 ns |  2.686 ns |  0.96 |    0.00 |     - |     - |     - |         - |
-|             PatternMatchNotNull9 |     ? |  2.650 ns | 0.0158 ns | 0.0140 ns |  2.628 ns |  2.673 ns |  0.96 |    0.00 |     - |     - |     - |         - |
-|                     ObjectEquals |     ? | 13.016 ns | 0.0106 ns | 0.0088 ns | 13.005 ns | 13.034 ns |  4.69 |    0.01 |     - |     - |     - |         - |
-|            ObjectReferenceEquals |     ? |  2.772 ns | 0.0130 ns | 0.0122 ns |  2.757 ns |  2.798 ns |  1.00 |    0.01 |     - |     - |     - |         - |
+|                    **EqualOperator** |     **?** |  **2.655 ns** | **0.0234 ns** | **0.0219 ns** |  **2.630 ns** |  **2.700 ns** |  **1.00** |    **0.00** |     **-** |     **-** |     **-** |         **-** |
+|                PartternMatchNull |     ? |  2.661 ns | 0.0287 ns | 0.0255 ns |  2.629 ns |  2.711 ns |  1.00 |    0.01 |     - |     - |     - |         - |
+|             PatternMatchNotNull7 |     ? |  2.811 ns | 0.0113 ns | 0.0101 ns |  2.793 ns |  2.831 ns |  1.06 |    0.01 |     - |     - |     - |         - |
+| PatternMatchNotNull7WithVariable |     ? |  2.688 ns | 0.0195 ns | 0.0173 ns |  2.662 ns |  2.713 ns |  1.01 |    0.01 |     - |     - |     - |         - |
+|             PatternMatchNotNull8 |     ? |  2.724 ns | 0.0163 ns | 0.0152 ns |  2.704 ns |  2.753 ns |  1.03 |    0.01 |     - |     - |     - |         - |
+|             PatternMatchNotNull9 |     ? |  2.687 ns | 0.0162 ns | 0.0152 ns |  2.671 ns |  2.722 ns |  1.01 |    0.01 |     - |     - |     - |         - |
+|                     ObjectEquals |     ? | 13.156 ns | 0.0657 ns | 0.0615 ns | 13.058 ns | 13.272 ns |  4.96 |    0.05 |     - |     - |     - |         - |
+|            ObjectReferenceEquals |     ? |  2.805 ns | 0.0121 ns | 0.0101 ns |  2.787 ns |  2.827 ns |  1.06 |    0.01 |     - |     - |     - |         - |
+|                 EqualityComparer |     ? | 20.649 ns | 0.0626 ns | 0.0555 ns | 20.540 ns | 20.751 ns |  7.77 |    0.07 |     - |     - |     - |         - |
 |                                  |       |           |           |           |           |           |       |         |       |       |       |           |
-|                    **EqualOperator** |      **** |  **2.655 ns** | **0.0133 ns** | **0.0124 ns** |  **2.634 ns** |  **2.674 ns** |  **1.00** |    **0.00** |     **-** |     **-** |     **-** |         **-** |
-|                PartternMatchNull |       |  2.668 ns | 0.0084 ns | 0.0075 ns |  2.655 ns |  2.683 ns |  1.01 |    0.00 |     - |     - |     - |         - |
-|             PatternMatchNotNull7 |       |  2.714 ns | 0.0096 ns | 0.0080 ns |  2.706 ns |  2.735 ns |  1.02 |    0.00 |     - |     - |     - |         - |
-| PatternMatchNotNull7WithVariable |       |  2.711 ns | 0.0117 ns | 0.0103 ns |  2.697 ns |  2.733 ns |  1.02 |    0.01 |     - |     - |     - |         - |
-|             PatternMatchNotNull8 |       |  2.713 ns | 0.0150 ns | 0.0117 ns |  2.699 ns |  2.740 ns |  1.02 |    0.01 |     - |     - |     - |         - |
-|             PatternMatchNotNull9 |       |  2.637 ns | 0.0149 ns | 0.0139 ns |  2.618 ns |  2.662 ns |  0.99 |    0.01 |     - |     - |     - |         - |
-|                     ObjectEquals |       | 12.974 ns | 0.0208 ns | 0.0173 ns | 12.954 ns | 13.007 ns |  4.89 |    0.02 |     - |     - |     - |         - |
-|            ObjectReferenceEquals |       |  2.783 ns | 0.0188 ns | 0.0176 ns |  2.761 ns |  2.811 ns |  1.05 |    0.01 |     - |     - |     - |         - |
+|                    **EqualOperator** |      **** |  **2.638 ns** | **0.0084 ns** | **0.0070 ns** |  **2.628 ns** |  **2.651 ns** |  **1.00** |    **0.00** |     **-** |     **-** |     **-** |         **-** |
+|                PartternMatchNull |       |  2.647 ns | 0.0103 ns | 0.0097 ns |  2.633 ns |  2.665 ns |  1.00 |    0.01 |     - |     - |     - |         - |
+|             PatternMatchNotNull7 |       |  2.787 ns | 0.0068 ns | 0.0060 ns |  2.777 ns |  2.796 ns |  1.06 |    0.00 |     - |     - |     - |         - |
+| PatternMatchNotNull7WithVariable |       |  2.735 ns | 0.0200 ns | 0.0177 ns |  2.715 ns |  2.771 ns |  1.04 |    0.01 |     - |     - |     - |         - |
+|             PatternMatchNotNull8 |       |  2.719 ns | 0.0232 ns | 0.0206 ns |  2.691 ns |  2.752 ns |  1.03 |    0.01 |     - |     - |     - |         - |
+|             PatternMatchNotNull9 |       |  2.678 ns | 0.0180 ns | 0.0150 ns |  2.658 ns |  2.704 ns |  1.02 |    0.01 |     - |     - |     - |         - |
+|                     ObjectEquals |       | 13.249 ns | 0.0377 ns | 0.0315 ns | 13.189 ns | 13.304 ns |  5.02 |    0.02 |     - |     - |     - |         - |
+|            ObjectReferenceEquals |       |  2.647 ns | 0.0080 ns | 0.0075 ns |  2.635 ns |  2.665 ns |  1.00 |    0.00 |     - |     - |     - |         - |
+|                 EqualityComparer |       | 19.272 ns | 0.0209 ns | 0.0163 ns | 19.238 ns | 19.295 ns |  7.31 |    0.02 |     - |     - |     - |         - |
 
 ### ValueNullBench
-|                           Method | Value |       Mean |     Error |    StdDev |        Min |        Max |  Ratio | RatioSD |  Gen 0 | Gen 1 | Gen 2 | Allocated |
-|--------------------------------- |------ |-----------:|----------:|----------:|-----------:|-----------:|-------:|--------:|-------:|------:|------:|----------:|
-|                    **EqualOperator** |     **?** |   **3.803 ns** | **0.0099 ns** | **0.0093 ns** |   **3.793 ns** |   **3.822 ns** |   **1.00** |    **0.00** |      **-** |     **-** |     **-** |         **-** |
-|                         HasValue |     ? |   3.746 ns | 0.0163 ns | 0.0145 ns |   3.731 ns |   3.779 ns |   0.99 |    0.00 |      - |     - |     - |         - |
-|                PartternMatchNull |     ? |   3.800 ns | 0.0087 ns | 0.0077 ns |   3.792 ns |   3.817 ns |   1.00 |    0.00 |      - |     - |     - |         - |
-|             PatternMatchNotNull7 |     ? | 141.815 ns | 0.4713 ns | 0.4408 ns | 141.131 ns | 142.598 ns |  37.29 |    0.13 |      - |     - |     - |         - |
-| PatternMatchNotNull7WithVariable |     ? |   6.616 ns | 0.0447 ns | 0.0418 ns |   6.536 ns |   6.683 ns |   1.74 |    0.01 |      - |     - |     - |         - |
-|             PatternMatchNotNull8 |     ? |   3.768 ns | 0.0054 ns | 0.0045 ns |   3.763 ns |   3.779 ns |   0.99 |    0.00 |      - |     - |     - |         - |
-|             PatternMatchNotNull9 |     ? |   3.768 ns | 0.0029 ns | 0.0024 ns |   3.763 ns |   3.773 ns |   0.99 |    0.00 |      - |     - |     - |         - |
-|                     ObjectEquals |     ? | 136.234 ns | 0.2238 ns | 0.1984 ns | 135.977 ns | 136.625 ns |  35.83 |    0.09 |      - |     - |     - |         - |
-|                                  |       |            |           |           |            |            |        |         |        |       |       |           |
-|                    **EqualOperator** |     **1** |   **3.742 ns** | **0.0061 ns** | **0.0054 ns** |   **3.732 ns** |   **3.752 ns** |   **1.00** |    **0.00** |      **-** |     **-** |     **-** |         **-** |
-|                         HasValue |     1 |   3.796 ns | 0.0069 ns | 0.0058 ns |   3.788 ns |   3.809 ns |   1.01 |    0.00 |      - |     - |     - |         - |
-|                PartternMatchNull |     1 |   3.807 ns | 0.0157 ns | 0.0139 ns |   3.791 ns |   3.843 ns |   1.02 |    0.00 |      - |     - |     - |         - |
-|             PatternMatchNotNull7 |     1 | 314.719 ns | 0.7754 ns | 0.7253 ns | 313.541 ns | 315.742 ns |  84.08 |    0.18 | 0.0229 |     - |     - |     240 B |
-| PatternMatchNotNull7WithVariable |     1 |   6.705 ns | 0.0360 ns | 0.0337 ns |   6.654 ns |   6.761 ns |   1.79 |    0.01 |      - |     - |     - |         - |
-|             PatternMatchNotNull8 |     1 |   3.774 ns | 0.0063 ns | 0.0053 ns |   3.768 ns |   3.784 ns |   1.01 |    0.00 |      - |     - |     - |         - |
-|             PatternMatchNotNull9 |     1 |   3.769 ns | 0.0129 ns | 0.0115 ns |   3.750 ns |   3.792 ns |   1.01 |    0.00 |      - |     - |     - |         - |
-|                     ObjectEquals |     1 | 436.290 ns | 1.1269 ns | 1.0541 ns | 433.572 ns | 437.695 ns | 116.58 |    0.33 | 0.0229 |     - |     - |     240 B |
+|                           Method | Value |       Mean |     Error |    StdDev |        Min |        Max | Ratio | RatioSD |  Gen 0 | Gen 1 | Gen 2 | Allocated |
+|--------------------------------- |------ |-----------:|----------:|----------:|-----------:|-----------:|------:|--------:|-------:|------:|------:|----------:|
+|                    **EqualOperator** |     **?** |   **3.804 ns** | **0.0118 ns** | **0.0104 ns** |   **3.782 ns** |   **3.824 ns** |  **1.00** |    **0.00** |      **-** |     **-** |     **-** |         **-** |
+|                         HasValue |     ? |   3.742 ns | 0.0187 ns | 0.0175 ns |   3.724 ns |   3.784 ns |  0.98 |    0.00 |      - |     - |     - |         - |
+|                PartternMatchNull |     ? |   3.755 ns | 0.0151 ns | 0.0126 ns |   3.734 ns |   3.778 ns |  0.99 |    0.00 |      - |     - |     - |         - |
+|             PatternMatchNotNull7 |     ? | 130.717 ns | 0.5504 ns | 0.5148 ns | 129.730 ns | 131.553 ns | 34.37 |    0.18 |      - |     - |     - |         - |
+| PatternMatchNotNull7WithVariable |     ? |   6.545 ns | 0.0379 ns | 0.0336 ns |   6.467 ns |   6.595 ns |  1.72 |    0.01 |      - |     - |     - |         - |
+|             PatternMatchNotNull8 |     ? |   3.757 ns | 0.0183 ns | 0.0171 ns |   3.729 ns |   3.780 ns |  0.99 |    0.01 |      - |     - |     - |         - |
+|             PatternMatchNotNull9 |     ? |   3.768 ns | 0.0209 ns | 0.0185 ns |   3.737 ns |   3.811 ns |  0.99 |    0.01 |      - |     - |     - |         - |
+|                     ObjectEquals |     ? | 142.474 ns | 0.9953 ns | 0.9310 ns | 141.314 ns | 144.297 ns | 37.45 |    0.30 |      - |     - |     - |         - |
+|                 EqualityComparer |     ? |  52.806 ns | 0.1622 ns | 0.1517 ns |  52.575 ns |  53.032 ns | 13.88 |    0.06 |      - |     - |     - |         - |
+|                                  |       |            |           |           |            |            |       |         |        |       |       |           |
+|                    **EqualOperator** |     **1** |   **3.994 ns** | **0.0200 ns** | **0.0187 ns** |   **3.959 ns** |   **4.026 ns** |  **1.00** |    **0.00** |      **-** |     **-** |     **-** |         **-** |
+|                         HasValue |     1 |   4.380 ns | 0.0166 ns | 0.0155 ns |   4.354 ns |   4.413 ns |  1.10 |    0.01 |      - |     - |     - |         - |
+|                PartternMatchNull |     1 |   3.993 ns | 0.0200 ns | 0.0167 ns |   3.972 ns |   4.032 ns |  1.00 |    0.01 |      - |     - |     - |         - |
+|             PatternMatchNotNull7 |     1 | 377.570 ns | 1.3571 ns | 1.2694 ns | 376.070 ns | 379.997 ns | 94.54 |    0.51 | 0.0229 |     - |     - |     240 B |
+| PatternMatchNotNull7WithVariable |     1 |   6.562 ns | 0.1374 ns | 0.1582 ns |   6.404 ns |   6.886 ns |  1.65 |    0.05 |      - |     - |     - |         - |
+|             PatternMatchNotNull8 |     1 |   4.380 ns | 0.0129 ns | 0.0121 ns |   4.357 ns |   4.400 ns |  1.10 |    0.01 |      - |     - |     - |         - |
+|             PatternMatchNotNull9 |     1 |   4.402 ns | 0.0178 ns | 0.0166 ns |   4.382 ns |   4.432 ns |  1.10 |    0.01 |      - |     - |     - |         - |
+|                     ObjectEquals |     1 | 328.538 ns | 0.5475 ns | 0.4274 ns | 327.334 ns | 328.885 ns | 82.25 |    0.40 | 0.0229 |     - |     - |     240 B |
+|                 EqualityComparer |     1 |  52.585 ns | 0.0940 ns | 0.0834 ns |  52.447 ns |  52.750 ns | 13.17 |    0.07 |      - |     - |     - |         - |
 
 ### ValueNotNullBench
-|                           Method | Value |       Mean |     Error |    StdDev |        Min |        Max |  Ratio | RatioSD |  Gen 0 | Gen 1 | Gen 2 | Allocated |
-|--------------------------------- |------ |-----------:|----------:|----------:|-----------:|-----------:|-------:|--------:|-------:|------:|------:|----------:|
-|                    **EqualOperator** |     **?** |   **2.771 ns** | **0.0087 ns** | **0.0077 ns** |   **2.759 ns** |   **2.783 ns** |   **1.00** |    **0.00** |      **-** |     **-** |     **-** |         **-** |
-|                         HasValue |     ? |   2.740 ns | 0.0110 ns | 0.0103 ns |   2.724 ns |   2.757 ns |   0.99 |    0.00 |      - |     - |     - |         - |
-|                PartternMatchNull |     ? |   3.744 ns | 0.0122 ns | 0.0108 ns |   3.729 ns |   3.766 ns |   1.35 |    0.01 |      - |     - |     - |         - |
-|             PatternMatchNotNull7 |     ? | 129.982 ns | 0.2863 ns | 0.2390 ns | 129.518 ns | 130.551 ns |  46.90 |    0.13 |      - |     - |     - |         - |
-| PatternMatchNotNull7WithVariable |     ? |   6.611 ns | 0.0268 ns | 0.0224 ns |   6.571 ns |   6.660 ns |   2.39 |    0.01 |      - |     - |     - |         - |
-|             PatternMatchNotNull8 |     ? |   2.776 ns | 0.0114 ns | 0.0107 ns |   2.760 ns |   2.794 ns |   1.00 |    0.01 |      - |     - |     - |         - |
-|             PatternMatchNotNull9 |     ? |   2.776 ns | 0.0100 ns | 0.0093 ns |   2.761 ns |   2.792 ns |   1.00 |    0.00 |      - |     - |     - |         - |
-|                     ObjectEquals |     ? | 135.991 ns | 0.5699 ns | 0.5331 ns | 135.337 ns | 137.192 ns |  49.09 |    0.24 |      - |     - |     - |         - |
-|                                  |       |            |           |           |            |            |        |         |        |       |       |           |
-|                    **EqualOperator** |     **1** |   **2.761 ns** | **0.0062 ns** | **0.0058 ns** |   **2.755 ns** |   **2.773 ns** |   **1.00** |    **0.00** |      **-** |     **-** |     **-** |         **-** |
-|                         HasValue |     1 |   2.732 ns | 0.0075 ns | 0.0071 ns |   2.723 ns |   2.743 ns |   0.99 |    0.00 |      - |     - |     - |         - |
-|                PartternMatchNull |     1 |   3.748 ns | 0.0059 ns | 0.0055 ns |   3.740 ns |   3.760 ns |   1.36 |    0.00 |      - |     - |     - |         - |
-|             PatternMatchNotNull7 |     1 | 314.425 ns | 1.1728 ns | 1.0397 ns | 312.646 ns | 316.281 ns | 113.87 |    0.42 | 0.0229 |     - |     - |     240 B |
-| PatternMatchNotNull7WithVariable |     1 |   6.732 ns | 0.0348 ns | 0.0325 ns |   6.694 ns |   6.792 ns |   2.44 |    0.01 |      - |     - |     - |         - |
-|             PatternMatchNotNull8 |     1 |   2.767 ns | 0.0140 ns | 0.0117 ns |   2.749 ns |   2.787 ns |   1.00 |    0.01 |      - |     - |     - |         - |
-|             PatternMatchNotNull9 |     1 |   2.768 ns | 0.0083 ns | 0.0078 ns |   2.758 ns |   2.781 ns |   1.00 |    0.00 |      - |     - |     - |         - |
-|                     ObjectEquals |     1 | 343.078 ns | 2.8681 ns | 2.6829 ns | 334.005 ns | 345.407 ns | 124.25 |    0.98 | 0.0229 |     - |     - |     240 B |
+|                           Method | Value |       Mean |     Error |    StdDev |        Min |        Max | Ratio | RatioSD |  Gen 0 | Gen 1 | Gen 2 | Allocated |
+|--------------------------------- |------ |-----------:|----------:|----------:|-----------:|-----------:|------:|--------:|-------:|------:|------:|----------:|
+|                    **EqualOperator** |     **?** |   **2.757 ns** | **0.0080 ns** | **0.0071 ns** |   **2.745 ns** |   **2.770 ns** |  **1.00** |    **0.00** |      **-** |     **-** |     **-** |         **-** |
+|                         HasValue |     ? |   2.801 ns | 0.0262 ns | 0.0246 ns |   2.769 ns |   2.843 ns |  1.02 |    0.01 |      - |     - |     - |         - |
+|                PartternMatchNull |     ? |   3.752 ns | 0.0131 ns | 0.0116 ns |   3.731 ns |   3.772 ns |  1.36 |    0.00 |      - |     - |     - |         - |
+|             PatternMatchNotNull7 |     ? | 130.503 ns | 0.6916 ns | 0.6469 ns | 129.466 ns | 131.598 ns | 47.34 |    0.25 |      - |     - |     - |         - |
+| PatternMatchNotNull7WithVariable |     ? |   5.042 ns | 0.0328 ns | 0.0307 ns |   4.983 ns |   5.091 ns |  1.83 |    0.01 |      - |     - |     - |         - |
+|             PatternMatchNotNull8 |     ? |   2.767 ns | 0.0120 ns | 0.0113 ns |   2.744 ns |   2.785 ns |  1.00 |    0.00 |      - |     - |     - |         - |
+|             PatternMatchNotNull9 |     ? |   2.744 ns | 0.0104 ns | 0.0097 ns |   2.730 ns |   2.760 ns |  1.00 |    0.00 |      - |     - |     - |         - |
+|                     ObjectEquals |     ? | 138.281 ns | 0.3430 ns | 0.3209 ns | 137.884 ns | 138.927 ns | 50.16 |    0.19 |      - |     - |     - |         - |
+|                 EqualityComparer |     ? |  52.638 ns | 0.0815 ns | 0.0636 ns |  52.528 ns |  52.769 ns | 19.09 |    0.07 |      - |     - |     - |         - |
+|                                  |       |            |           |           |            |            |       |         |        |       |       |           |
+|                    **EqualOperator** |     **1** |   **4.306 ns** | **0.0082 ns** | **0.0073 ns** |   **4.297 ns** |   **4.320 ns** |  **1.00** |    **0.00** |      **-** |     **-** |     **-** |         **-** |
+|                         HasValue |     1 |   3.452 ns | 0.0078 ns | 0.0073 ns |   3.442 ns |   3.466 ns |  0.80 |    0.00 |      - |     - |     - |         - |
+|                PartternMatchNull |     1 |   4.375 ns | 0.0099 ns | 0.0093 ns |   4.355 ns |   4.389 ns |  1.02 |    0.00 |      - |     - |     - |         - |
+|             PatternMatchNotNull7 |     1 | 375.198 ns | 1.3389 ns | 1.2524 ns | 373.107 ns | 377.433 ns | 87.14 |    0.32 | 0.0229 |     - |     - |     240 B |
+| PatternMatchNotNull7WithVariable |     1 |   6.594 ns | 0.0243 ns | 0.0203 ns |   6.561 ns |   6.628 ns |  1.53 |    0.01 |      - |     - |     - |         - |
+|             PatternMatchNotNull8 |     1 |   4.315 ns | 0.0076 ns | 0.0067 ns |   4.307 ns |   4.328 ns |  1.00 |    0.00 |      - |     - |     - |         - |
+|             PatternMatchNotNull9 |     1 |   4.270 ns | 0.0143 ns | 0.0133 ns |   4.247 ns |   4.297 ns |  0.99 |    0.00 |      - |     - |     - |         - |
+|                     ObjectEquals |     1 | 332.185 ns | 0.8209 ns | 0.7277 ns | 331.043 ns | 333.748 ns | 77.14 |    0.24 | 0.0229 |     - |     - |     240 B |
+|                 EqualityComparer |     1 |  52.772 ns | 0.0760 ns | 0.0711 ns |  52.645 ns |  52.881 ns | 12.26 |    0.03 |      - |     - |     - |         - |
+
+### Ref: EqualityComparer\<T\>.Default
+```csharp
+[SimpleJob]
+[MeanColumn, MinColumn, MaxColumn]
+[MemoryDiagnoser]
+public class EqualityComparerBench
+{
+    [Benchmark]
+    public IEqualityComparer<string?> StringEqualityComparer()
+    {
+        return EqualityComparer<string?>.Default;
+    }
+
+    [Benchmark]
+    public IEqualityComparer<int?> IntEqualityComparer()
+    {
+        return EqualityComparer<int?>.Default;
+    }
+}
+```
+
+|                 Method |      Mean |     Error |    StdDev |       Min |       Max | Gen 0 | Gen 1 | Gen 2 | Allocated |
+|----------------------- |----------:|----------:|----------:|----------:|----------:|------:|------:|------:|----------:|
+| StringEqualityComparer | 0.0082 ns | 0.0048 ns | 0.0040 ns | 0.0000 ns | 0.0156 ns |     - |     - |     - |         - |
+|    IntEqualityComparer | 0.0000 ns | 0.0000 ns | 0.0000 ns | 0.0000 ns | 0.0000 ns |     - |     - |     - |         - |
+
 
 ## CIL
 il extension file is decompiled by [ILSpy](https://github.com/icsharpcode/ILSpy)   

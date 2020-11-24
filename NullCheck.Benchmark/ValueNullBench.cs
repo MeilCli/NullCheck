@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
+using System.Collections.Generic;
 
 namespace NullCheck.Benchmark
 {
@@ -94,6 +95,17 @@ namespace NullCheck.Benchmark
             for (int i = 0; i < 10; i++)
             {
                 result = object.Equals(Value, null);
+            }
+            return result;
+        }
+
+        [Benchmark]
+        public bool EqualityComparer()
+        {
+            bool result = false;
+            for (int i = 0; i < 10; i++)
+            {
+                result = EqualityComparer<int?>.Default.Equals(Value, null);
             }
             return result;
         }

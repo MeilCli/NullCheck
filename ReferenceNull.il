@@ -13,7 +13,7 @@
 			string 'value'
 		) cil managed 
 	{
-		// Method begins at RVA 0x20ce
+		// Method begins at RVA 0x20df
 		// Code size 5 (0x5)
 		.maxstack 8
 
@@ -28,7 +28,7 @@
 			string 'value'
 		) cil managed 
 	{
-		// Method begins at RVA 0x20d4
+		// Method begins at RVA 0x20e5
 		// Code size 5 (0x5)
 		.maxstack 8
 
@@ -43,7 +43,7 @@
 			string 'value'
 		) cil managed 
 	{
-		// Method begins at RVA 0x20da
+		// Method begins at RVA 0x20eb
 		// Code size 5 (0x5)
 		.maxstack 8
 
@@ -58,7 +58,7 @@
 			string 'value'
 		) cil managed 
 	{
-		// Method begins at RVA 0x20e0
+		// Method begins at RVA 0x20f1
 		// Code size 10 (0xa)
 		.maxstack 8
 
@@ -79,7 +79,7 @@
 			string 'value'
 		) cil managed 
 	{
-		// Method begins at RVA 0x20eb
+		// Method begins at RVA 0x20fc
 		// Code size 5 (0x5)
 		.maxstack 8
 
@@ -94,7 +94,7 @@
 			string 'value'
 		) cil managed 
 	{
-		// Method begins at RVA 0x20f1
+		// Method begins at RVA 0x2102
 		// Code size 5 (0x5)
 		.maxstack 8
 
@@ -109,7 +109,7 @@
 			string 'value'
 		) cil managed 
 	{
-		// Method begins at RVA 0x20f7
+		// Method begins at RVA 0x2108
 		// Code size 8 (0x8)
 		.maxstack 8
 
@@ -124,7 +124,7 @@
 			string 'value'
 		) cil managed 
 	{
-		// Method begins at RVA 0x2100
+		// Method begins at RVA 0x2111
 		// Code size 5 (0x5)
 		.maxstack 8
 
@@ -134,10 +134,26 @@
 		IL_0004: ret
 	} // end of method ReferenceNull::ObjectReferenceEquals
 
+	.method public hidebysig 
+		instance bool EqualityComparer (
+			string 'value'
+		) cil managed 
+	{
+		// Method begins at RVA 0x2117
+		// Code size 13 (0xd)
+		.maxstack 8
+
+		IL_0000: call class [System.Collections]System.Collections.Generic.EqualityComparer`1<!0> class [System.Collections]System.Collections.Generic.EqualityComparer`1<string>::get_Default()
+		IL_0005: ldarg.1
+		IL_0006: ldnull
+		IL_0007: callvirt instance bool class [System.Collections]System.Collections.Generic.EqualityComparer`1<string>::Equals(!0, !0)
+		IL_000c: ret
+	} // end of method ReferenceNull::EqualityComparer
+
 	.method public hidebysig specialname rtspecialname 
 		instance void .ctor () cil managed 
 	{
-		// Method begins at RVA 0x2106
+		// Method begins at RVA 0x2125
 		// Code size 7 (0x7)
 		.maxstack 8
 

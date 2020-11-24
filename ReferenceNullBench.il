@@ -36,7 +36,7 @@
 		.custom instance void [System.Runtime]System.Runtime.CompilerServices.CompilerGeneratedAttribute::.ctor() = (
 			01 00 00 00
 		)
-		// Method begins at RVA 0x221b
+		// Method begins at RVA 0x2262
 		// Code size 7 (0x7)
 		.maxstack 8
 
@@ -53,7 +53,7 @@
 		.custom instance void [System.Runtime]System.Runtime.CompilerServices.CompilerGeneratedAttribute::.ctor() = (
 			01 00 00 00
 		)
-		// Method begins at RVA 0x2223
+		// Method begins at RVA 0x226a
 		// Code size 8 (0x8)
 		.maxstack 8
 
@@ -69,7 +69,7 @@
 		.custom instance void [BenchmarkDotNet.Annotations]BenchmarkDotNet.Attributes.BenchmarkAttribute::.ctor() = (
 			01 00 01 00 54 02 08 42 61 73 65 6c 69 6e 65 01
 		)
-		// Method begins at RVA 0x222c
+		// Method begins at RVA 0x2274
 		// Code size 27 (0x1b)
 		.maxstack 2
 		.locals init (
@@ -108,7 +108,7 @@
 		.custom instance void [BenchmarkDotNet.Annotations]BenchmarkDotNet.Attributes.BenchmarkAttribute::.ctor() = (
 			01 00 00 00
 		)
-		// Method begins at RVA 0x2254
+		// Method begins at RVA 0x229c
 		// Code size 27 (0x1b)
 		.maxstack 2
 		.locals init (
@@ -147,7 +147,7 @@
 		.custom instance void [BenchmarkDotNet.Annotations]BenchmarkDotNet.Attributes.BenchmarkAttribute::.ctor() = (
 			01 00 00 00
 		)
-		// Method begins at RVA 0x227c
+		// Method begins at RVA 0x22c4
 		// Code size 27 (0x1b)
 		.maxstack 2
 		.locals init (
@@ -186,7 +186,7 @@
 		.custom instance void [BenchmarkDotNet.Annotations]BenchmarkDotNet.Attributes.BenchmarkAttribute::.ctor() = (
 			01 00 00 00
 		)
-		// Method begins at RVA 0x22a4
+		// Method begins at RVA 0x22ec
 		// Code size 30 (0x1e)
 		.maxstack 2
 		.locals init (
@@ -227,7 +227,7 @@
 		.custom instance void [BenchmarkDotNet.Annotations]BenchmarkDotNet.Attributes.BenchmarkAttribute::.ctor() = (
 			01 00 00 00
 		)
-		// Method begins at RVA 0x22d0
+		// Method begins at RVA 0x2318
 		// Code size 30 (0x1e)
 		.maxstack 2
 		.locals init (
@@ -268,7 +268,7 @@
 		.custom instance void [BenchmarkDotNet.Annotations]BenchmarkDotNet.Attributes.BenchmarkAttribute::.ctor() = (
 			01 00 00 00
 		)
-		// Method begins at RVA 0x22fc
+		// Method begins at RVA 0x2344
 		// Code size 30 (0x1e)
 		.maxstack 2
 		.locals init (
@@ -309,7 +309,7 @@
 		.custom instance void [BenchmarkDotNet.Annotations]BenchmarkDotNet.Attributes.BenchmarkAttribute::.ctor() = (
 			01 00 00 00
 		)
-		// Method begins at RVA 0x2328
+		// Method begins at RVA 0x2370
 		// Code size 30 (0x1e)
 		.maxstack 2
 		.locals init (
@@ -348,7 +348,7 @@
 		.custom instance void [BenchmarkDotNet.Annotations]BenchmarkDotNet.Attributes.BenchmarkAttribute::.ctor() = (
 			01 00 00 00
 		)
-		// Method begins at RVA 0x2354
+		// Method begins at RVA 0x239c
 		// Code size 27 (0x1b)
 		.maxstack 2
 		.locals init (
@@ -381,10 +381,50 @@
 		IL_001a: ret
 	} // end of method ReferenceNullBench::ObjectReferenceEquals
 
+	.method public hidebysig 
+		instance bool EqualityComparer () cil managed 
+	{
+		.custom instance void [BenchmarkDotNet.Annotations]BenchmarkDotNet.Attributes.BenchmarkAttribute::.ctor() = (
+			01 00 00 00
+		)
+		// Method begins at RVA 0x23c4
+		// Code size 35 (0x23)
+		.maxstack 3
+		.locals init (
+			[0] bool result,
+			[1] int32 i
+		)
+
+		IL_0000: ldc.i4.0
+		IL_0001: stloc.0
+		IL_0002: ldc.i4.0
+		IL_0003: stloc.1
+		IL_0004: br.s IL_001c
+		// loop start (head: IL_001c)
+			IL_0006: call class [System.Collections]System.Collections.Generic.EqualityComparer`1<!0> class [System.Collections]System.Collections.Generic.EqualityComparer`1<string>::get_Default()
+			IL_000b: ldarg.0
+			IL_000c: call instance string NullCheck.Benchmark.ReferenceNullBench::get_Value()
+			IL_0011: ldnull
+			IL_0012: callvirt instance bool class [System.Collections]System.Collections.Generic.EqualityComparer`1<string>::Equals(!0, !0)
+			IL_0017: stloc.0
+			IL_0018: ldloc.1
+			IL_0019: ldc.i4.1
+			IL_001a: add
+			IL_001b: stloc.1
+
+			IL_001c: ldloc.1
+			IL_001d: ldc.i4.s 10
+			IL_001f: blt.s IL_0006
+		// end loop
+
+		IL_0021: ldloc.0
+		IL_0022: ret
+	} // end of method ReferenceNullBench::EqualityComparer
+
 	.method public hidebysig specialname rtspecialname 
 		instance void .ctor () cil managed 
 	{
-		// Method begins at RVA 0x237b
+		// Method begins at RVA 0x23f3
 		// Code size 7 (0x7)
 		.maxstack 8
 

@@ -7,7 +7,7 @@
 			valuetype [System.Runtime]System.Nullable`1<int32> 'value'
 		) cil managed 
 	{
-		// Method begins at RVA 0x217a
+		// Method begins at RVA 0x21c0
 		// Code size 11 (0xb)
 		.maxstack 8
 
@@ -23,7 +23,7 @@
 			valuetype [System.Runtime]System.Nullable`1<int32> 'value'
 		) cil managed 
 	{
-		// Method begins at RVA 0x2186
+		// Method begins at RVA 0x21cc
 		// Code size 11 (0xb)
 		.maxstack 8
 
@@ -39,7 +39,7 @@
 			valuetype [System.Runtime]System.Nullable`1<int32> 'value'
 		) cil managed 
 	{
-		// Method begins at RVA 0x2192
+		// Method begins at RVA 0x21d8
 		// Code size 11 (0xb)
 		.maxstack 8
 
@@ -55,7 +55,7 @@
 			valuetype [System.Runtime]System.Nullable`1<int32> 'value'
 		) cil managed 
 	{
-		// Method begins at RVA 0x219e
+		// Method begins at RVA 0x21e4
 		// Code size 18 (0x12)
 		.maxstack 8
 
@@ -74,7 +74,7 @@
 			valuetype [System.Runtime]System.Nullable`1<int32> 'value'
 		) cil managed 
 	{
-		// Method begins at RVA 0x21b1
+		// Method begins at RVA 0x21f7
 		// Code size 24 (0x18)
 		.maxstack 8
 
@@ -99,7 +99,7 @@
 			valuetype [System.Runtime]System.Nullable`1<int32> 'value'
 		) cil managed 
 	{
-		// Method begins at RVA 0x21ca
+		// Method begins at RVA 0x2210
 		// Code size 11 (0xb)
 		.maxstack 8
 
@@ -115,7 +115,7 @@
 			valuetype [System.Runtime]System.Nullable`1<int32> 'value'
 		) cil managed 
 	{
-		// Method begins at RVA 0x21d6
+		// Method begins at RVA 0x221c
 		// Code size 11 (0xb)
 		.maxstack 8
 
@@ -131,7 +131,7 @@
 			valuetype [System.Runtime]System.Nullable`1<int32> 'value'
 		) cil managed 
 	{
-		// Method begins at RVA 0x21e2
+		// Method begins at RVA 0x2228
 		// Code size 13 (0xd)
 		.maxstack 8
 
@@ -142,10 +142,31 @@
 		IL_000c: ret
 	} // end of method ValueNull::ObjectEquals
 
+	.method public hidebysig 
+		instance bool EqualityComparer (
+			valuetype [System.Runtime]System.Nullable`1<int32> 'value'
+		) cil managed 
+	{
+		// Method begins at RVA 0x2238
+		// Code size 21 (0x15)
+		.maxstack 3
+		.locals init (
+			[0] valuetype [System.Runtime]System.Nullable`1<int32>
+		)
+
+		IL_0000: call class [System.Collections]System.Collections.Generic.EqualityComparer`1<!0> class [System.Collections]System.Collections.Generic.EqualityComparer`1<valuetype [System.Runtime]System.Nullable`1<int32>>::get_Default()
+		IL_0005: ldarg.1
+		IL_0006: ldloca.s 0
+		IL_0008: initobj valuetype [System.Runtime]System.Nullable`1<int32>
+		IL_000e: ldloc.0
+		IL_000f: callvirt instance bool class [System.Collections]System.Collections.Generic.EqualityComparer`1<valuetype [System.Runtime]System.Nullable`1<int32>>::Equals(!0, !0)
+		IL_0014: ret
+	} // end of method ValueNull::EqualityComparer
+
 	.method public hidebysig specialname rtspecialname 
 		instance void .ctor () cil managed 
 	{
-		// Method begins at RVA 0x21f0
+		// Method begins at RVA 0x2259
 		// Code size 7 (0x7)
 		.maxstack 8
 

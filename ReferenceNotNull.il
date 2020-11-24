@@ -134,10 +134,28 @@
 		IL_0004: ret
 	} // end of method ReferenceNotNull::ObjectReferenceEquals
 
+	.method public hidebysig 
+		instance bool EqualityComparer (
+			string 'value'
+		) cil managed 
+	{
+		// Method begins at RVA 0x20c6
+		// Code size 16 (0x10)
+		.maxstack 8
+
+		IL_0000: call class [System.Collections]System.Collections.Generic.EqualityComparer`1<!0> class [System.Collections]System.Collections.Generic.EqualityComparer`1<string>::get_Default()
+		IL_0005: ldarg.1
+		IL_0006: ldnull
+		IL_0007: callvirt instance bool class [System.Collections]System.Collections.Generic.EqualityComparer`1<string>::Equals(!0, !0)
+		IL_000c: ldc.i4.0
+		IL_000d: ceq
+		IL_000f: ret
+	} // end of method ReferenceNotNull::EqualityComparer
+
 	.method public hidebysig specialname rtspecialname 
 		instance void .ctor () cil managed 
 	{
-		// Method begins at RVA 0x20c6
+		// Method begins at RVA 0x20d7
 		// Code size 7 (0x7)
 		.maxstack 8
 

@@ -1,4 +1,5 @@
-﻿using static System.Console;
+﻿using System.Collections.Generic;
+using static System.Console;
 
 namespace NullCheck.Console
 {
@@ -53,6 +54,18 @@ namespace NullCheck.Console
                     WriteLine("Reference.ObjectReferenceEquals value is not null");
                 }
             }
+
+            public static void EqualityComparer(string? value)
+            {
+                if (EqualityComparer<string?>.Default.Equals(value, null))
+                {
+                    WriteLine("Reference.EqualityComparer value is null");
+                }
+                else
+                {
+                    WriteLine("Reference.EqualityComparer value is not null");
+                }
+            }
         }
 
         public static class Value
@@ -90,6 +103,18 @@ namespace NullCheck.Console
                 else
                 {
                     WriteLine("Value.ObjectEquals value is not null");
+                }
+            }
+
+            public static void EqualityComparer(int? value)
+            {
+                if (EqualityComparer<int?>.Default.Equals(value, null))
+                {
+                    WriteLine("Value.EqualityComparer value is null");
+                }
+                else
+                {
+                    WriteLine("Value.EqualityComparer value is not null");
                 }
             }
         }

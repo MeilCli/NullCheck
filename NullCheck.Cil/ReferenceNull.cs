@@ -1,4 +1,6 @@
-﻿namespace NullCheck.Cil
+﻿using System.Collections.Generic;
+
+namespace NullCheck.Cil
 {
     public class ReferenceNull
     {
@@ -40,6 +42,11 @@
         public bool ObjectReferenceEquals(string? value)
         {
             return object.ReferenceEquals(value, null);
+        }
+
+        public bool EqualityComparer(string? value)
+        {
+            return EqualityComparer<string?>.Default.Equals(value, null);
         }
     }
 }

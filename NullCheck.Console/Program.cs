@@ -9,6 +9,7 @@ NullCondition.Reference.EqualOperator(reference);
 NullCondition.Reference.PatternMatch(reference);
 NullCondition.Reference.ObjectEquals(reference);
 NullCondition.Reference.ObjectReferenceEquals(reference);
+NullCondition.Reference.EqualityComparer(reference);
 
 WriteLine("-----NotNullCondition NotNull-----");
 NotNullCondition.Reference.NotEqualOperator(reference);
@@ -24,6 +25,7 @@ NullCondition.Reference.EqualOperator(reference);
 NullCondition.Reference.PatternMatch(reference);
 NullCondition.Reference.ObjectEquals(reference);
 NullCondition.Reference.ObjectReferenceEquals(reference);
+NullCondition.Reference.EqualityComparer(reference);
 
 WriteLine("-----NotNullCondition Null-----");
 NotNullCondition.Reference.NotEqualOperator(reference);
@@ -40,6 +42,7 @@ WriteLine("-----NullCondition NotNull-----");
 NullCondition.Value.EqualOperator(value);
 NullCondition.Value.PatternMatch(value);
 NullCondition.Value.ObjectEquals(value);
+NullCondition.Value.EqualityComparer(value);
 
 WriteLine("-----NotNullCondition NotNull");
 NotNullCondition.Value.NotEqualOperator(value);
@@ -55,6 +58,7 @@ WriteLine("-----NullCondition Null-----");
 NullCondition.Value.EqualOperator(value);
 NullCondition.Value.PatternMatch(value);
 NullCondition.Value.ObjectEquals(value);
+NullCondition.Value.EqualityComparer(value);
 
 WriteLine("-----NotNullCondition Null");
 NotNullCondition.Value.NotEqualOperator(value);

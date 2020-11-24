@@ -1,4 +1,6 @@
-﻿namespace NullCheck.Cil
+﻿using System.Collections.Generic;
+
+namespace NullCheck.Cil
 {
     public class ValueNull
     {
@@ -40,6 +42,11 @@
         public bool ObjectEquals(int? value)
         {
             return object.Equals(value, null);
+        }
+
+        public bool EqualityComparer(int? value)
+        {
+            return EqualityComparer<int?>.Default.Equals(value, null);
         }
     }
 }
