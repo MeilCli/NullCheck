@@ -24,7 +24,7 @@
 	} // end of method ReferenceNotNull::EqualOperator
 
 	.method public hidebysig 
-		instance bool PartternMatchNull (
+		instance bool IsOperator (
 			string 'value'
 		) cil managed 
 	{
@@ -36,10 +36,10 @@
 		IL_0001: ldnull
 		IL_0002: cgt.un
 		IL_0004: ret
-	} // end of method ReferenceNotNull::PartternMatchNull
+	} // end of method ReferenceNotNull::IsOperator
 
 	.method public hidebysig 
-		instance bool PatternMatchNotNull7 (
+		instance bool PatternMatchNull (
 			string 'value'
 		) cil managed 
 	{
@@ -51,10 +51,10 @@
 		IL_0001: ldnull
 		IL_0002: cgt.un
 		IL_0004: ret
-	} // end of method ReferenceNotNull::PatternMatchNotNull7
+	} // end of method ReferenceNotNull::PatternMatchNull
 
 	.method public hidebysig 
-		instance bool PatternMatchNotNull7WithVariable (
+		instance bool PatternMatchNotNull7 (
 			string 'value'
 		) cil managed 
 	{
@@ -70,7 +70,7 @@
 
 		IL_0005: ldc.i4.0
 		IL_0006: ret
-	} // end of method ReferenceNotNull::PatternMatchNotNull7WithVariable
+	} // end of method ReferenceNotNull::PatternMatchNotNull7
 
 	.method public hidebysig 
 		instance bool PatternMatchNotNull8 (

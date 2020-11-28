@@ -34,7 +34,18 @@ namespace NullCheck.Benchmark
         }
 
         [Benchmark]
-        public bool PartternMatchNull()
+        public bool IsOperator()
+        {
+            bool result = false;
+            for (int i = 0; i < 10; i++)
+            {
+                result = Value is int;
+            }
+            return result;
+        }
+
+        [Benchmark]
+        public bool PatternMatchNull()
         {
             bool result = false;
             for (int i = 0; i < 10; i++)
@@ -46,17 +57,6 @@ namespace NullCheck.Benchmark
 
         [Benchmark]
         public bool PatternMatchNotNull7()
-        {
-            bool result = false;
-            for (int i = 0; i < 10; i++)
-            {
-                result = Value is int;
-            }
-            return result;
-        }
-
-        [Benchmark]
-        public bool PatternMatchNotNull7WithVariable()
         {
             bool result = false;
             for (int i = 0; i < 10; i++)

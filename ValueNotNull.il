@@ -31,25 +31,11 @@
 	} // end of method ValueNotNull::HasValue
 
 	.method public hidebysig 
-		instance bool PartternMatchNull (
+		instance bool IsOperator (
 			valuetype [System.Runtime]System.Nullable`1<int32> 'value'
 		) cil managed 
 	{
 		// Method begins at RVA 0x213f
-		// Code size 8 (0x8)
-		.maxstack 8
-
-		IL_0000: ldarga.s 'value'
-		IL_0002: call instance bool valuetype [System.Runtime]System.Nullable`1<int32>::get_HasValue()
-		IL_0007: ret
-	} // end of method ValueNotNull::PartternMatchNull
-
-	.method public hidebysig 
-		instance bool PatternMatchNotNull7 (
-			valuetype [System.Runtime]System.Nullable`1<int32> 'value'
-		) cil managed 
-	{
-		// Method begins at RVA 0x2148
 		// Code size 15 (0xf)
 		.maxstack 8
 
@@ -59,10 +45,24 @@
 		IL_000b: ldnull
 		IL_000c: cgt.un
 		IL_000e: ret
-	} // end of method ValueNotNull::PatternMatchNotNull7
+	} // end of method ValueNotNull::IsOperator
 
 	.method public hidebysig 
-		instance bool PatternMatchNotNull7WithVariable (
+		instance bool PatternMatchNull (
+			valuetype [System.Runtime]System.Nullable`1<int32> 'value'
+		) cil managed 
+	{
+		// Method begins at RVA 0x214f
+		// Code size 8 (0x8)
+		.maxstack 8
+
+		IL_0000: ldarga.s 'value'
+		IL_0002: call instance bool valuetype [System.Runtime]System.Nullable`1<int32>::get_HasValue()
+		IL_0007: ret
+	} // end of method ValueNotNull::PatternMatchNull
+
+	.method public hidebysig 
+		instance bool PatternMatchNotNull7 (
 			valuetype [System.Runtime]System.Nullable`1<int32> 'value'
 		) cil managed 
 	{
@@ -82,7 +82,7 @@
 
 		IL_0013: ldc.i4.0
 		IL_0014: ret
-	} // end of method ValueNotNull::PatternMatchNotNull7WithVariable
+	} // end of method ValueNotNull::PatternMatchNotNull7
 
 	.method public hidebysig 
 		instance bool PatternMatchNotNull8 (

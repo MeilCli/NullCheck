@@ -103,12 +103,51 @@
 	} // end of method ReferenceNotNullBench::EqualOperator
 
 	.method public hidebysig 
-		instance bool PartternMatchNull () cil managed 
+		instance bool IsOperator () cil managed 
 	{
 		.custom instance void [BenchmarkDotNet.Annotations]BenchmarkDotNet.Attributes.BenchmarkAttribute::.ctor() = (
 			01 00 00 00
 		)
 		// Method begins at RVA 0x2104
+		// Code size 27 (0x1b)
+		.maxstack 2
+		.locals init (
+			[0] bool result,
+			[1] int32 i
+		)
+
+		IL_0000: ldc.i4.0
+		IL_0001: stloc.0
+		IL_0002: ldc.i4.0
+		IL_0003: stloc.1
+		IL_0004: br.s IL_0014
+		// loop start (head: IL_0014)
+			IL_0006: ldarg.0
+			IL_0007: call instance string NullCheck.Benchmark.ReferenceNotNullBench::get_Value()
+			IL_000c: ldnull
+			IL_000d: cgt.un
+			IL_000f: stloc.0
+			IL_0010: ldloc.1
+			IL_0011: ldc.i4.1
+			IL_0012: add
+			IL_0013: stloc.1
+
+			IL_0014: ldloc.1
+			IL_0015: ldc.i4.s 10
+			IL_0017: blt.s IL_0006
+		// end loop
+
+		IL_0019: ldloc.0
+		IL_001a: ret
+	} // end of method ReferenceNotNullBench::IsOperator
+
+	.method public hidebysig 
+		instance bool PatternMatchNull () cil managed 
+	{
+		.custom instance void [BenchmarkDotNet.Annotations]BenchmarkDotNet.Attributes.BenchmarkAttribute::.ctor() = (
+			01 00 00 00
+		)
+		// Method begins at RVA 0x212c
 		// Code size 30 (0x1e)
 		.maxstack 2
 		.locals init (
@@ -141,49 +180,10 @@
 
 		IL_001c: ldloc.0
 		IL_001d: ret
-	} // end of method ReferenceNotNullBench::PartternMatchNull
+	} // end of method ReferenceNotNullBench::PatternMatchNull
 
 	.method public hidebysig 
 		instance bool PatternMatchNotNull7 () cil managed 
-	{
-		.custom instance void [BenchmarkDotNet.Annotations]BenchmarkDotNet.Attributes.BenchmarkAttribute::.ctor() = (
-			01 00 00 00
-		)
-		// Method begins at RVA 0x2130
-		// Code size 27 (0x1b)
-		.maxstack 2
-		.locals init (
-			[0] bool result,
-			[1] int32 i
-		)
-
-		IL_0000: ldc.i4.0
-		IL_0001: stloc.0
-		IL_0002: ldc.i4.0
-		IL_0003: stloc.1
-		IL_0004: br.s IL_0014
-		// loop start (head: IL_0014)
-			IL_0006: ldarg.0
-			IL_0007: call instance string NullCheck.Benchmark.ReferenceNotNullBench::get_Value()
-			IL_000c: ldnull
-			IL_000d: cgt.un
-			IL_000f: stloc.0
-			IL_0010: ldloc.1
-			IL_0011: ldc.i4.1
-			IL_0012: add
-			IL_0013: stloc.1
-
-			IL_0014: ldloc.1
-			IL_0015: ldc.i4.s 10
-			IL_0017: blt.s IL_0006
-		// end loop
-
-		IL_0019: ldloc.0
-		IL_001a: ret
-	} // end of method ReferenceNotNullBench::PatternMatchNotNull7
-
-	.method public hidebysig 
-		instance bool PatternMatchNotNull7WithVariable () cil managed 
 	{
 		.custom instance void [BenchmarkDotNet.Annotations]BenchmarkDotNet.Attributes.BenchmarkAttribute::.ctor() = (
 			01 00 00 00
@@ -219,7 +219,7 @@
 
 		IL_0019: ldloc.0
 		IL_001a: ret
-	} // end of method ReferenceNotNullBench::PatternMatchNotNull7WithVariable
+	} // end of method ReferenceNotNullBench::PatternMatchNotNull7
 
 	.method public hidebysig 
 		instance bool PatternMatchNotNull8 () cil managed 

@@ -9,17 +9,17 @@ namespace NullCheck.Cil
             return value != null;
         }
 
-        public bool PartternMatchNull(string? value)
+        public bool IsOperator(string? value)
+        {
+            return value is string;
+        }
+
+        public bool PatternMatchNull(string? value)
         {
             return !(value is null);
         }
 
         public bool PatternMatchNotNull7(string? value)
-        {
-            return value is string;
-        }
-
-        public bool PatternMatchNotNull7WithVariable(string? value)
         {
             return value is string notNullValue;
         }

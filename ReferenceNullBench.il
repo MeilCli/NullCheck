@@ -103,7 +103,7 @@
 	} // end of method ReferenceNullBench::EqualOperator
 
 	.method public hidebysig 
-		instance bool PartternMatchNull () cil managed 
+		instance bool IsOperator () cil managed 
 	{
 		.custom instance void [BenchmarkDotNet.Annotations]BenchmarkDotNet.Attributes.BenchmarkAttribute::.ctor() = (
 			01 00 00 00
@@ -139,10 +139,10 @@
 
 		IL_0019: ldloc.0
 		IL_001a: ret
-	} // end of method ReferenceNullBench::PartternMatchNull
+	} // end of method ReferenceNullBench::IsOperator
 
 	.method public hidebysig 
-		instance bool PatternMatchNotNull7 () cil managed 
+		instance bool PatternMatchNull () cil managed 
 	{
 		.custom instance void [BenchmarkDotNet.Annotations]BenchmarkDotNet.Attributes.BenchmarkAttribute::.ctor() = (
 			01 00 00 00
@@ -178,10 +178,10 @@
 
 		IL_0019: ldloc.0
 		IL_001a: ret
-	} // end of method ReferenceNullBench::PatternMatchNotNull7
+	} // end of method ReferenceNullBench::PatternMatchNull
 
 	.method public hidebysig 
-		instance bool PatternMatchNotNull7WithVariable () cil managed 
+		instance bool PatternMatchNotNull7 () cil managed 
 	{
 		.custom instance void [BenchmarkDotNet.Annotations]BenchmarkDotNet.Attributes.BenchmarkAttribute::.ctor() = (
 			01 00 00 00
@@ -219,7 +219,7 @@
 
 		IL_001c: ldloc.0
 		IL_001d: ret
-	} // end of method ReferenceNullBench::PatternMatchNotNull7WithVariable
+	} // end of method ReferenceNullBench::PatternMatchNotNull7
 
 	.method public hidebysig 
 		instance bool PatternMatchNotNull8 () cil managed 

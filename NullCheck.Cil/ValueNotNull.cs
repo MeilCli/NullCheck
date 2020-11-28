@@ -14,17 +14,17 @@ namespace NullCheck.Cil
             return value.HasValue;
         }
 
-        public bool PartternMatchNull(int? value)
+        public bool IsOperator(int? value)
+        {
+            return value is int;
+        }
+
+        public bool PatternMatchNull(int? value)
         {
             return !(value is null);
         }
 
         public bool PatternMatchNotNull7(int? value)
-        {
-            return value is int;
-        }
-
-        public bool PatternMatchNotNull7WithVariable(int? value)
         {
             return value is int notNullValue;
         }

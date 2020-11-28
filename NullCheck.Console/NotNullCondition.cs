@@ -18,9 +18,21 @@ namespace NullCheck.Console
                 }
             }
 
-            public static void PatternMatch7(string? value)
+            public static void IsOperator(string? value)
             {
                 if (value is string)
+                {
+                    WriteLine("Reference.IsOperator value is not null");
+                }
+                else
+                {
+                    WriteLine("Reference.IsOpertor value is null");
+                }
+            }
+
+            public static void PatternMatch7(string? value)
+            {
+                if (value is string nonNullValue)
                 {
                     WriteLine("Reference.PatternMatch7 value is not null");
                 }
@@ -81,9 +93,21 @@ namespace NullCheck.Console
                 }
             }
 
-            public static void PatternMatch7(int? value)
+            public static void IsOperator(int? value)
             {
                 if (value is int)
+                {
+                    WriteLine("Value.IsOperator value is not null");
+                }
+                else
+                {
+                    WriteLine("Value.IsOperator value is null");
+                }
+            }
+
+            public static void PatternMatch7(int? value)
+            {
+                if (value is int nonNullValue)
                 {
                     WriteLine("Value.PatternMatch7 value is not null");
                 }
